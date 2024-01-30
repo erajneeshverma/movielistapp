@@ -13,10 +13,6 @@ const movieSchema = new Schema({
         required:true,
         trim:true,
     },
-    // poster:{
-    //     type: String, //cloudinary url
-    //     required: true,
-    // },
     releaseyear:{
         type: Number,
         required: true,

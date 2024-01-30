@@ -13,7 +13,6 @@ import {
     countMovieByLanguage,
 } from "../controllers/movie.controller.js";
 
-// import {upload} from '../middlewares/multer.middleware.js';
 
 const router = Router();
 
