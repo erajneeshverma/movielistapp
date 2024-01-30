@@ -1,7 +1,6 @@
 import {asyncHandler} from '../utils/asyncHandler.js';
 import {ApiError} from '../utils/ApiError.js';
 import { Movie } from '../models/movie.model.js';
-//import {uploadOnCloudinary} from '../utils/cloudinary.js';
 import {ApiResponse} from '../utils/ApiResponse.js';
 
 //add a movie
@@ -25,22 +24,7 @@ const addMovie = asyncHandler(async(req,res)=>{
         throw new ApiError(409,`Movie with title : ${title} Already exist...`);
     }
 
-    // //files 
-    // const posterLocalPath = req.files?.poster[0]?.path;
-
-    // if(!posterLocalPath){
-    //     throw new ApiError(400,`Movie Poster is required....`);
-    // }
-
-    // console.log(posterLocalPath);
-
-    // //upload to cloudinary
-    // const poster1 = await uploadOnCloudinary(posterLocalPath);
     
-    // console.log(poster1);
-    // if(!poster1){
-    //     throw new ApiError(400,`Movie Poster upload failed....`);
-    // }
 
     movie = await Movie.create({
         title,
