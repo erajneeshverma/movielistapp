@@ -1,0 +1,16 @@
+{
+  "name": "movielistapp",
+  "version": "1.0.0",
+  "description": "A backend Api for Movie List Application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Movie",
+    "Node.js",
+    "express"
+  ],
+  "author": "Rajnish Kumar Verma",
+  "license": "ISC"
+}
