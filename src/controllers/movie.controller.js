@@ -250,6 +250,24 @@ const filterByLanguage = asyncHandler(async(req,res)=>{
     )
 });
 
+//Counting number of movie with specified language
+
+const countMovieByLanguage = asyncHandler(async(req,res)=>{
+    const languageFilter = req.query.language;
+
+    if (!languageFilter) {
+        throw new ApiError(400, "Director Filter is required...")
+    }
+
+    const regex = new RegExp(languageFilter, 'i');
+
+    //const count = await Movie.countDocuments({ language });
+    const count = await Movie.countDocuments({ language: { $regex: regex } });
+
+    return res.status(200).json(
+        new ApiResponse(200, count, "Movie Filtered by Director Successfully")
+    )
+});
 
 
 
@@ -266,4 +284,5 @@ export {
     filterByReleaseYear,
     filterByRating,
     filterByLanguage,
+    countMovieByLanguage,
 }
