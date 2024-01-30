@@ -9,7 +9,8 @@ import {
     filterByDirector,
     filterByReleaseYear,
     filterByRating,
-    filterByLanguage
+    filterByLanguage,
+    countMovieByLanguage,
 } from "../controllers/movie.controller.js";
 
 // import {upload} from '../middlewares/multer.middleware.js';
@@ -33,6 +34,8 @@ router.route("/filterbyreleaseyear").get(filterByReleaseYear);
 router.route("/filterbyrating").get(filterByRating);
 
 router.route("/filterbylanguage").get(filterByLanguage);
+
+router.route("/countbylanguage").get(countMovieByLanguage);
 
 
 export default router;
