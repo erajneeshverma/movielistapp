@@ -1,0 +1,38 @@
+import { Router } from "express";
+import { 
+    addMovie, 
+    deleteMovie, 
+    getAllMovie, 
+    updateMovie, 
+    searchMovie, 
+    filterByName, 
+    filterByDirector,
+    filterByReleaseYear,
+    filterByRating,
+    filterByLanguage
+} from "../controllers/movie.controller.js";
+
+// import {upload} from '../middlewares/multer.middleware.js';
+
+const router = Router();
+
+router.route("/add").post(addMovie);
+
+router.route("/movies").get(getAllMovie);
+
+router.route("/:id").put(updateMovie).delete(deleteMovie);
+
+router.route("/search").get(searchMovie)
+
+router.route("/filterbyname").get(filterByName);
+
+router.route("/filterbydirector").get(filterByDirector);
+
+router.route("/filterbyreleaseyear").get(filterByReleaseYear);
+
+router.route("/filterbyrating").get(filterByRating);
+
+router.route("/filterbylanguage").get(filterByLanguage);
+
+
+export default router;

@@ -6,23 +6,25 @@ const movieSchema = new Schema({
         required:true,
         trim:true,
         index: true,
+        unique: true,
     },
     director:{
         type:String,
         required:true,
         trim:true,
     },
-    poster:{
-        type: String, //cloudinary url
-        required: true,
-    },
+    // poster:{
+    //     type: String, //cloudinary url
+    //     required: true,
+    // },
     releaseyear:{
         type: Number,
         required: true,
     },
-    language:[{
-        type:String
-    }],
+    language:{
+        type:String,
+        required: true,
+    },
     rating:{
         type: Number,
         default:0,

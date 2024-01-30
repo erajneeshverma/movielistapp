@@ -15,12 +15,25 @@ app.use(express.json({
 }));
 
 app.use(express.urlencoded({
-    urlencoded: true, 
+    extended: true, 
     limit: "16kb"
 }));
 
 app.use(express.static("public"));
 
 app.use(cookieParser());
+
+
+
+//routes import here
+
+import movieRouter from '../src/routes/movie.route.js';
+
+
+//router declartion
+
+app.use("/api/v1/movie",movieRouter);
+
+
 
 export {app};
