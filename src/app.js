@@ -6,7 +6,7 @@ import cors from 'cors';
 const app = express();
 
 app.use(cors({
-    origin: "https://movielistapp-xi.vercel.app",
+    origin: ["https://movielistapp-xi.vercel.app", "http://localhost:5173"],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
     optionsSuccessStatus: 204,
