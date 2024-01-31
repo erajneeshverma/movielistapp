@@ -87,6 +87,9 @@ const updateMovie = asyncHandler(async (req, res) => {
     const movie = await Movie.findById(req.params.id);
   
     console.log(movie);
+    if(!movie){
+        throw new ApiError(400,"Movie not found by id...");
+    }
     if (movie) {
         movie.title = title;
         movie.director = director;
@@ -95,12 +98,16 @@ const updateMovie = asyncHandler(async (req, res) => {
         movie.rating = rating;
   
         const updatedMovie = await movie.save();
+
+        if(!updatedMovie){
+            throw new ApiError(400,"Something Went wrong while updating and saving movie...");
+        }
+
         return res.status(200).json(
             new ApiResponse(200, updatedMovie, "Movie Updated Successfully")
         )
-    } else {
-        throw new ApiError(500, "Something went wrong while updating the movie")
     }
+
 });
 
 //delete a movie
@@ -268,11 +275,11 @@ const countMovieByLanguage = asyncHandler(async(req,res)=>{
 
     const regex = new RegExp(languageFilter, 'i');
 
-    //const count = await Movie.countDocuments({ language });
+    
     const count = await Movie.countDocuments({ language: { $regex: regex } });
-
+    const result = await Movie.find({ language: { $regex: regex } });
     return res.status(200).json(
-        new ApiResponse(200, count, "Movie Filtered by Director Successfully")
+        new ApiResponse(200, {count,result}, "Movie Filtered by Director Successfully")
     )
 });
 
