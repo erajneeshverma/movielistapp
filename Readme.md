@@ -4,257 +4,102 @@
 A backend Application for Listing movies based on different criterias.
 
 
-{
-	"info": {
-		"_postman_id": "a0af28ef-a243-4a95-9bff-323cb06cdf97",
-		"name": "MovieListApp",
-		"description": "A collection for listing movies based on different criterias. plus add movie deletemovie,and update movie feature are included.",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "31287750"
-	},
-	"item": [
-		{
-			"name": "Add Movie",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n   \"title\":\"Iron Man 3\",\r\n   \"director\":\"George Catar\",\r\n   \"releaseyear\": \"2019\",\r\n   \"language\": \"English, Hindi\",\r\n   \"rating\":\"8.4\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:5000/api/v1/movie/add",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"v1",
-						"movie",
-						"add"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "get All movies",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": []
-				},
-				"url": {
-					"raw": "http://localhost:5000/api/v1/movie/movies",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"v1",
-						"movie",
-						"movies"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update a movie",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n   \"title\":\"DeadPool\",\r\n   \"director\":\"Tim Miller\",\r\n   \"releaseyear\": \"2016\",\r\n   \"language\": \"English, Hindi\",\r\n   \"rating\":\"8.9\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:5000/api/v1/movie/65b94faf40847e4fe36e80d1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"v1",
-						"movie",
-						"65b94faf40847e4fe36e80d1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete a movie",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:5000/api/v1/movie/65b94faf40847e4fe36e80d1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"v1",
-						"movie",
-						"65b94faf40847e4fe36e80d1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Search a movie",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:5000/api/v1/movie/search?q=iron man",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"v1",
-						"movie",
-						"search"
-					],
-					"query": [
-						{
-							"key": "q",
-							"value": "iron man"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "filter by name",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:5000/api/v1/movie/filter?name=iron man",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"v1",
-						"movie",
-						"filter"
-					],
-					"query": [
-						{
-							"key": "name",
-							"value": "iron man"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Filter by Director",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:5000/api/v1/movie/filterbydirector?director=Tim",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"v1",
-						"movie",
-						"filterbydirector"
-					],
-					"query": [
-						{
-							"key": "director",
-							"value": "Tim"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Filter by release ear",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "filter by rating",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Get Movie by id",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:5000/api/v1/movie/65b95f3f40c805697fdda444",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"v1",
-						"movie",
-						"65b95f3f40c805697fdda444"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "count and get result based on language",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		}
-	]
-}
+# MovieList Application platform (v1)
+
+>Simple Movie Listing with advanced search options using react and Tailwind CSS.
+
+<img src="./public//web1.JPG">
+<img src="./public//web2.JPG">
+<img src="./public//web3.JPG">
+<img src="./public//web4.JPG">
+<img src="./public//web5.JPG">
+<img src="./public//web 5.JPG">
+
+
+This project is part of my [Backend Project | Movie Listing Platform] Presidio Task. It is a full-featured Movie listing with advanced search Features. See it in action at (https://movielistapp-xi.vercel.app)
+
+This is version 1.0 of the app. The first version can be found [here](https://movielistapp-xi.vercel.app)
+
+<!-- toc -->
+
+- [Features](#features)
+- [Usage](#usage)
+  - [Env Variables](#env-variables)
+  - [Install Dependencies ](#install-dependencies)
+  - [Run](#run)
+
+## Features
+
+- All Movie Listing
+- Add a movie
+- Search Movie
+- Update Movie
+- delete Movie
+- seach based on different crieteria
+- search by title
+- search by director
+- search by rating
+- search by release year
+- search by language
+
+
+## Usage
+
+- Create a MongoDB database and obtain your `MongoDB URI` - [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register)
+
+### Env Variables
+
+create the `.env` and add the following
+
+```
+PORT=5000
+MONGODB_URI=your mongodb uri
+CORS_ORIGIN= application frontend Url
+PAGINATION_LIMIT=8
+```
+
+Change the  PAGINATION_LIMIT to what you want
+
+### Install Dependencies (frontend & backend)
+
+```
+npm install
+
+```
+
+### Run
+
+```
+
+# Run backend only
+npm run dev
+```
+
+
+#### Vite outputs the build to /dist
+
+Create React App by default outputs the build to a **/build** directory and this is
+what we serve from our backend in production.  
+Vite by default outputs the build to a **/dist** directory so we need to make
+some adjustments to our [src/index.js]
+Change...
+
+
+#### Vite has a different script to run the dev server
+
+In a CRA project you run `npm start` to run the development server, in Vite you
+start the development server with `npm run dev`  
+If you are using the **dev** script in your root pacakge.json to run the project
+using concurrently, then you will also need to change your root package.json
+scripts from...
+
+
+#### A final note:
+
+Vite requires you to name React component files using the `.jsx` file
+type, so you won't be able to use `.js` for your components. The entry point to
+your app will be in `main.jsx` instead of `index.js`
+
+And that's it! You should be good to go with the course using Vite.
+
+---
