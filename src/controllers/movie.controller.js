@@ -189,7 +189,9 @@ const filterByName = asyncHandler(async(req,res)=>{
     const regex = new RegExp(nameFilter, 'i');
 
     const result = await Movie.find({ title: { $regex: regex } });
-
+    if(!result){
+        throw new ApiError(404,"Error happend while finding search b name query...")
+    }
     return res.status(200).json(
         new ApiResponse(200, result, "Movie Filtered by Name Successfully")
     )
