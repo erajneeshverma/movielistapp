@@ -12,7 +12,7 @@ const addMovie = asyncHandler(async(req,res)=>{
     //validation
 
     if( [title,director,releaseyear,language].some((field)=>
-        field?.trim() === "")
+        field === "")
     ){
         throw new ApiError(400,"All fields are required...");
     }
@@ -40,7 +40,7 @@ const addMovie = asyncHandler(async(req,res)=>{
         throw new ApiError(500, "Something went wrong while adding the movie")
     }
 
-    return res.status(201).json(
+    return res.status(200).json(
         new ApiResponse(200, createdMovie, "Movie Added Successfully")
     )
 })
@@ -65,7 +65,7 @@ const getAllMovie = asyncHandler(async (req,res) => {
         .limit(pageSize)
         .skip(pageSize * (page - 1));
 
-    return res.status(201).json(
+    return res.status(200).json(
         new ApiResponse(200, { movies, page, pages: Math.ceil(count / pageSize) }, "Movie Loaded Successfully")
     )
 
@@ -81,7 +81,7 @@ const updateMovie = asyncHandler(async (req, res) => {
     //validation
 
     if( [title,director,releaseyear,language].some((field)=>
-        field?.trim() === "")
+        field === "")
     ){
         throw new ApiError(400,"All fields are required...");
     }
@@ -97,7 +97,7 @@ const updateMovie = asyncHandler(async (req, res) => {
         movie.rating = rating;
   
         const updatedMovie = await movie.save();
-        return res.status(201).json(
+        return res.status(200).json(
             new ApiResponse(200, updatedMovie, "Movie Updated Successfully")
         )
     } else {
@@ -115,6 +115,22 @@ const deleteMovie = asyncHandler(async (req, res) => {
         await movie.deleteOne({ _id: movie._id });
         return res.status(200).json(
             new ApiResponse(200, "", "Movie Deleted Successfully")
+        )
+    } else {
+        throw new ApiError(404, "Movie Not Found...")
+    }
+
+});
+
+//get a single movie
+
+const GetMovieById = asyncHandler(async (req, res) => {
+
+    const movie = await Movie.findById(req.params.id);
+
+    if (movie) {
+        return res.status(200).json(
+            new ApiResponse(200, movie, "Movie Found ")
         )
     } else {
         throw new ApiError(404, "Movie Not Found...")
@@ -269,4 +285,5 @@ export {
     filterByRating,
     filterByLanguage,
     countMovieByLanguage,
+    GetMovieById,
 }

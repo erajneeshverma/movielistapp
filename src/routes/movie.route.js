@@ -11,6 +11,7 @@ import {
     filterByRating,
     filterByLanguage,
     countMovieByLanguage,
+    GetMovieById,
 } from "../controllers/movie.controller.js";
 
 
@@ -20,7 +21,7 @@ router.route("/add").post(addMovie);
 
 router.route("/movies").get(getAllMovie);
 
-router.route("/:id").put(updateMovie).delete(deleteMovie);
+router.route("/:id").get(GetMovieById).put(updateMovie).delete(deleteMovie);
 
 router.route("/search").get(searchMovie)
 
