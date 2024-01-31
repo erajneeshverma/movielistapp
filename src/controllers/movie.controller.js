@@ -24,8 +24,6 @@ const addMovie = asyncHandler(async(req,res)=>{
         throw new ApiError(409,`Movie with title : ${title} Already exist...`);
     }
 
-    
-
     movie = await Movie.create({
         title,
         director,
@@ -126,41 +124,50 @@ const deleteMovie = asyncHandler(async (req, res) => {
 
 const GetMovieById = asyncHandler(async (req, res) => {
 
-    const movie = await Movie.findById(req.params.id);
+    const id =  req.params.id;
+    //console.log(id);
+    const movie = await Movie.findById(id);
 
-    if (movie) {
-        return res.status(200).json(
-            new ApiResponse(200, movie, "Movie Found ")
-        )
-    } else {
+    if(!movie){
         throw new ApiError(404, "Movie Not Found...")
     }
 
+    return res.status(200).json(
+        new ApiResponse(200, movie, "Movie Found ")
+    )
 });
 
 //search a movie
 
-const searchMovie = asyncHandler(async(req,res)=>{
+const searchMovie = asyncHandler(async (req, res) => {
+
     
-    const query = req.query.q; 
+    const query = req.query.q;
     
+    console.log(req.query.q);
+
     if (!query) {
-        throw new ApiError(400, "Search Query is required...")
+    return res.status(400).json({ error: 'Search query parameter (q) is required' });
     }
 
     const regex = new RegExp(query, 'i');
 
     const result = await Movie.find({
-      $or: [
+    $or: [
         { title: { $regex: regex } },
         { director: { $regex: regex } }
-      ]
+    ]
     });
 
-    return res.status(200).json(
-        new ApiResponse(200, result, "Movie Deleted Successfully")
-    )
+    
+    if(!result){
+        console.error(error);
+        throw new ApiError(500,"Something Went Wring while Searching a movie....");
+    }
 
+    return res.status(200).json(
+        new ApiResponse(200, result, "Movie Found ")
+    )
 });
 
 //filter movie by name
